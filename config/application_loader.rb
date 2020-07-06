@@ -5,6 +5,11 @@ module ApplicationLoader
 
   def load_app!
     require_app
+    init_app
+  end
+
+  def init_app
+    require_dir 'config/initializers'
   end
 
   def require_app
