@@ -1,0 +1,5 @@
+db:
+  adapter: postgresql
+  host: localhost
+  user: postgres
+  password: notsecure
