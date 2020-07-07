@@ -28,7 +28,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Max: 25
   Exclude:
-    - 'lib/ads/roda_tree.rb'
+    - 'config/application.rb'
     - '**/spec/**/*'
 
 Style/StringLiterals:
