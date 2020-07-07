@@ -22,6 +22,7 @@ gem 'fast_jsonapi', '~> 1.5'
 
 gem 'pry', '~> 0.13.0'
 gem 'bcrypt', '~> 3.1.0'
+gem 'jwt', '~> 2.2.1'
 
 group :development, :test do
   gem 'pry-byebug', '~> 3.9.0'

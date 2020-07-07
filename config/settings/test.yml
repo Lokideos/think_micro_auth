@@ -1,3 +1,5 @@
 db:
   database: auth_test
   max_connections: 1
+application:
+  secret: "9a6d9b73-6bc8-456e-bac9-2d76fd92096f"

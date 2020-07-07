@@ -44,6 +44,25 @@ class Application < Roda
           end
         end
       end
+
+      r.on 'sessions' do
+        r.post do
+          session_params = validate_with!(SessionParamsContract).to_h.values
+          result = UserSessions::CreateService.call(*session_params)
+          response['Content-Type'] = 'application/json'
+
+          if result.success?
+            token = JwtEncoder.encode(uuid: result.session.uuid)
+            meta = { token: token }
+
+            response.status = 201
+            { meta: meta }.to_json
+          else
+            response.status = 401
+            error_response(result.session || result.errors)
+          end
+        end
+      end
     end
 
     r.get 'favicon.ico' do
