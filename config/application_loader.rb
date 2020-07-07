@@ -1,11 +1,27 @@
 # frozen_string_literal: true
 
 module ApplicationLoader
-  module_function
+  extend self
 
   def load_app!
+    init_config
+    init_db
     require_app
     init_app
+  end
+
+  def root
+    File.expand_path('..', __dir__)
+  end
+
+  private
+
+  def init_config
+    require_file 'config/initializers/config'
+  end
+
+  def init_db
+    require_file 'config/initializers/db'
   end
 
   def init_app
@@ -23,9 +39,5 @@ module ApplicationLoader
   def require_dir(path)
     path = File.join(root, path)
     Dir["#{path}/**/*.rb"].sort.each { |file| require file }
-  end
-
-  def root
-    File.expand_path('..', __dir__)
   end
 end
