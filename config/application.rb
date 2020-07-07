@@ -33,7 +33,7 @@ class Application < Roda
     end
 
     r.on 'v1' do
-      r.on 'users' do
+      r.on 'signup' do
         r.post do
           user_params = validate_with!(UserParamsContract).to_h.values
           result = Users::CreateService.call(*user_params)
@@ -49,7 +49,7 @@ class Application < Roda
         end
       end
 
-      r.on 'sessions' do
+      r.on 'login' do
         r.post do
           session_params = validate_with!(SessionParamsContract).to_h.values
           result = UserSessions::CreateService.call(*session_params)

@@ -6,7 +6,7 @@ RSpec.describe Application, type: :routes do
       let(:params) { { name: 'bob', email: 'bob@example.com', password: '' } }
 
       it 'returns an error' do
-        post 'v1/users', params
+        post 'v1/signup', params
 
         expect(last_response.status).to eq(422)
       end
@@ -15,7 +15,7 @@ RSpec.describe Application, type: :routes do
     context 'invalid parameters' do
       let(:params) { { name: 'b.o.b', email: 'bob@example.com', password: 'givemeatoken' } }
       it 'returns an error' do
-        post 'v1/users', params
+        post 'v1/signup', params
 
         expect(last_response.status).to eq(422)
         expect(response_body['errors']).to include(
@@ -33,7 +33,7 @@ RSpec.describe Application, type: :routes do
       let(:params) { { name: 'bob', email: 'bob@example.com', password: 'givemeatoken' } }
 
       it 'returns created status' do
-        post 'v1/users', params
+        post 'v1/signup', params
 
         expect(last_response.status).to eq(201)
       end

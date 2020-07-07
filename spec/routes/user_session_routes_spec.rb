@@ -6,7 +6,7 @@ RSpec.describe Application, type: :routes do
       let(:params) { { email: 'bob@example.com', password: '' } }
 
       it 'returns an error' do
-        post 'v1/sessions', params
+        post 'v1/login', params
 
         expect(last_response.status).to eq(401)
       end
@@ -16,7 +16,7 @@ RSpec.describe Application, type: :routes do
       let(:params) { { email: 'bob@example.com', password: 'invalid' } }
 
       it 'returns an error' do
-        post 'v1/sessions', params
+        post 'v1/login', params
 
         expect(last_response.status).to eq(401)
         expect(response_body['errors']).to include('detail' => 'Сессия не может быть создана')
@@ -34,7 +34,7 @@ RSpec.describe Application, type: :routes do
       end
 
       it 'returns created status' do
-        post 'v1/sessions', params
+        post 'v1/login', params
 
         expect(last_response.status).to eq(201)
         expect(response_body['meta']).to eq('token' => token)
