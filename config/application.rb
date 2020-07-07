@@ -11,5 +11,9 @@ class Application < Roda
       response.status = 200
       JSON({ status: 'ok' })
     end
+
+    r.get 'favicon.ico' do
+      'no icon'
+    end
   end
 end
