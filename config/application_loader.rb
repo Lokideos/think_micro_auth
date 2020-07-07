@@ -30,6 +30,7 @@ module ApplicationLoader
 
   def require_app
     require_file 'config/application'
+    require_dir 'app'
   end
 
   def require_file(path)
