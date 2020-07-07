@@ -3,6 +3,8 @@
 class User < Sequel::Model
   NAME_FORMAT = /\A\w+\z/.freeze
 
+  one_to_many :sessions, class: 'UserSession'
+
   def validate
     super
     validates_presence :name, message: I18n.t(:blank, scope: 'model.errors.user.name')
