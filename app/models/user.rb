@@ -15,6 +15,6 @@ class User < Sequel::Model
   end
 
   def authenticate(password)
-    password == self.password
+    self.password == password
   end
 end
