@@ -4,12 +4,15 @@ class Application < Roda
   plugin :error_handler do |e|
     case e
     when Sequel::NoMatchingRow
+      response['Content-Type'] = 'application/json'
       response.status = 422
       error_response I18n.t(:not_found, scope: 'api.errors')
     when Sequel::UniqueConstraintViolation
+      response['Content-Type'] = 'application/json'
       response.status = 422
       error_response I18n.t(:not_unique, scope: 'api.errors')
     when Validations::InvalidParams, KeyError
+      response['Content-Type'] = 'application/json'
       response.status = 422
       error_response I18n.t(:missing_parameters, scope: 'api.errors')
     else
@@ -26,7 +29,7 @@ class Application < Roda
     r.root do
       response['Content-Type'] = 'application/json'
       response.status = 200
-      JSON({ status: 'ok' })
+      { status: 'ok' }.to_json
     end
 
     r.on 'v1' do
@@ -38,7 +41,7 @@ class Application < Roda
 
           if result.success?
             response.status = 201
-            JSON({ status: 'created' })
+            { status: 'created' }.to_json
           else
             error_response(result.user)
           end
