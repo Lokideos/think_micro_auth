@@ -43,6 +43,7 @@ class Application < Roda
             response.status = 201
             { status: 'created' }.to_json
           else
+            response.status = 422
             error_response(result.user)
           end
         end
