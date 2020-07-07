@@ -28,6 +28,7 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.9.0'
 
   gem 'rspec', '~> 3.9.0'
+  gem 'fabrication', '~> 2.21.0'
   gem 'rack-test', '~> 1.1.0'
   gem 'database_cleaner-sequel', '~> 1.8.0'
 
