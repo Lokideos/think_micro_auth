@@ -21,6 +21,7 @@ gem 'activesupport', '~> 6.0.0', require: false
 gem 'fast_jsonapi', '~> 1.5'
 
 gem 'pry', '~> 0.13.0'
+gem 'bcrypt', '~> 3.1.0'
 
 group :development, :test do
   gem 'pry-byebug', '~> 3.9.0'
