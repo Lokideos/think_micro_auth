@@ -9,6 +9,8 @@ module Sequel::Plugins::SecurePassword
     end
 
     def password=(new_password)
+      return unless new_password.present?
+
       @password = Password.create(new_password)
       self.password_digest = @password
     end
