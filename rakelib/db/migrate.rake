@@ -13,6 +13,7 @@ namespace :db do
 
       Sequel::Migrator.run(db, migrations, target: version)
     end
+    Rake::Task['db:schema'].execute
     Rake::Task['db:version'].execute
   end
 end
