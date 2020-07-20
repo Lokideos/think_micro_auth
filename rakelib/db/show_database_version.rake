@@ -5,10 +5,12 @@ namespace :db do
   task version: :settings do
     Sequel.extension :migration
 
-    version = if Sequel.connect(Settings.db.to_hash).tables.include?(:schema_info)
-                Sequel.connect(Settings.db.to_hash)[:schema_info].first[:version]
+    DB = Sequel.connect(Settings.db.to_hash)
+
+    version = if DB.tables.include?(:schema_migrations)
+                DB[:schema_migrations].first[:filename]
               end || 0
 
-    puts "Schema Version: #{version}"
+    puts "Last Migration: #{version}"
   end
 end
