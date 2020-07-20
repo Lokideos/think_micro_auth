@@ -35,7 +35,7 @@ class Application < Roda
     r.on 'v1' do
       r.on 'signup' do
         r.post do
-          user_params = validate_with!(UserParamsContract).to_h.values
+          user_params = validate_with!(UserParamsContract, params).to_h.values
           result = Users::CreateService.call(*user_params)
           response['Content-Type'] = 'application/json'
 
@@ -51,7 +51,7 @@ class Application < Roda
 
       r.on 'login' do
         r.post do
-          session_params = validate_with!(SessionParamsContract).to_h.values
+          session_params = validate_with!(SessionParamsContract, params).to_h.values
           result = UserSessions::CreateService.call(*session_params)
           response['Content-Type'] = 'application/json'
 
