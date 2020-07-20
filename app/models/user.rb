@@ -3,6 +3,7 @@
 class User < Sequel::Model
   plugin :association_dependencies
   plugin :secure_password, include_validations: false
+  plugin :model_validations
 
   NAME_FORMAT = /\A\w+\z/.freeze
 
@@ -10,14 +11,17 @@ class User < Sequel::Model
 
   add_association_dependencies sessions: :delete
 
+  def valid?
+    validate_with(UsersContract, values).success?
+  end
+
   def validate
     super
 
-    validates_presence :name, message: I18n.t(:blank, scope: 'model.errors.user.name')
-    validates_presence :email, message: I18n.t(:blank, scope: 'model.errors.user.email')
-    if new?
-      validates_presence :password, message: I18n.t(:blank, scope: 'model.errors.user.password')
-    end
-    validates_format NAME_FORMAT, :name, message: I18n.t(:format, scope: 'model.errors.user.name')
+    validate_with!(UsersContract, values)
+  end
+
+  def errors
+    validate_with(UsersContract, values).errors.to_h
   end
 end
