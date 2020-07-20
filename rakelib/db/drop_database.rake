@@ -5,11 +5,9 @@ require 'sequel/core'
 namespace :db do
   desc 'Drop database'
   task drop: :settings do
-    db_settings = Settings.db.to_hash
-    db_url = "postgres://#{db_settings[:user]}:#{db_settings[:password]}@" +
-      "#{db_settings[:host]}:#{db_settings[:port]}"
+    CONNECTION_PARAMETERS = %i[adapter host port user password]
 
-    Sequel.connect(db_url) do |db|
+    Sequel.connect(Settings.db.to_hash.slice(*CONNECTION_PARAMETERS)) do |db|
       db.execute "DROP DATABASE #{Settings.db.to_hash[:database]}"
     end
   end
