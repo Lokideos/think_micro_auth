@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Application, type: :routes do
-  describe 'POST /v1/users' do
+  describe 'POST /v1/signup' do
     context 'missing parameters' do
       let(:params) { { name: 'bob', email: 'bob@example.com', password: '' } }
 
