@@ -3,7 +3,7 @@
 RSpec.describe Application, type: :routes do
   describe 'POST /login' do
     context 'missing parameters' do
-      let(:params) { { email: 'bob@example.com', password: '' } }
+      let(:params) { { email: 'bob@example.com', password: '1' } }
 
       it 'returns an error' do
         post 'v1/login', params
