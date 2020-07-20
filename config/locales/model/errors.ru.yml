@@ -7,7 +7,7 @@ ru:
           format: 'Укажите имя, используя буквы, цифры или символ подчёркивания'
         email:
           blank: 'Укажите адрес электронной почты'
-        password_digest:
+        password:
           blank: 'Пароль не может быть пустым'
       user_session:
         uuid:
