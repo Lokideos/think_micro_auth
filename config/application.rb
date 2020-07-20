@@ -67,6 +67,23 @@ class Application < Roda
           end
         end
       end
+
+      r.on 'auth' do
+        r.post do
+          result = Auth::FetchUserService.call(extracted_token['uuid'])
+          response['Content-Type'] = 'application/json'
+
+          if result.success?
+            meta = { user_id: result.user.id }
+
+            response.status = 200
+            { meta: meta }.to_json
+          else
+            response.status = 403
+            error_response(result.errors)
+          end
+        end
+      end
     end
 
     r.get 'favicon.ico' do
