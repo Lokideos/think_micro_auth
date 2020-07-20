@@ -2,11 +2,21 @@
 
 class UserSession < Sequel::Model
   plugin :uuid
+  plugin :model_validations
 
   many_to_one :user
 
+  def valid?
+    validate_with(UserSessionsContract, values).success?
+  end
+
   def validate
     super
-    validates_presence :uuid, message: I18n.t(:blank, scope: 'model.errors.user_session.uuid')
+
+    validate_with!(UserSessionsContract, values)
+  end
+
+  def errors
+    validate_with(UserSessionsContract, values).errors.to_h
   end
 end
