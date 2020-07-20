@@ -12,5 +12,6 @@ namespace :db do
     Sequel.connect(db_url) do |db|
       db.execute "CREATE DATABASE #{Settings.db.to_hash[:database]}"
     end
+    Rake::Task['db:add_extensions'].execute
   end
 end
