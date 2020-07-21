@@ -24,6 +24,7 @@ class Application < Roda
   plugin(:json_parser)
   include Validations
   include ApiErrors
+  include Auth
 
   route do |r|
     r.root do
