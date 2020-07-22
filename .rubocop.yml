@@ -17,7 +17,7 @@ AllCops:
     - 'node_modules/**/*'
   TargetRubyVersion: 2.6.6
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   Exclude:
     - 'db/seeds.rb'
@@ -28,7 +28,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Max: 25
   Exclude:
-    - 'lib/ads/roda_tree.rb'
+    - 'config/application.rb'
     - '**/spec/**/*'
 
 Style/StringLiterals:

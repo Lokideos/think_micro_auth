@@ -14,17 +14,23 @@ gem 'config', '~> 2.2.1'
 gem 'pg', '~> 1.2.3'
 gem 'sequel', '~> 5.32.0'
 
+gem 'sequel_secure_password', '~> 0.2.0'
+
 gem 'dry-initializer', '~> 3.0.3'
 gem 'dry-validation', '~> 1.5.0'
 
+gem 'activesupport', '~> 6.0.0', require: false
 gem 'fast_jsonapi', '~> 1.5'
 
 gem 'pry', '~> 0.13.0'
+gem 'bcrypt', '~> 3.1.0'
+gem 'jwt', '~> 2.2.1'
 
 group :development, :test do
   gem 'pry-byebug', '~> 3.9.0'
 
   gem 'rspec', '~> 3.9.0'
+  gem 'fabrication', '~> 2.21.0'
   gem 'rack-test', '~> 1.1.0'
   gem 'database_cleaner-sequel', '~> 1.8.0'
 
