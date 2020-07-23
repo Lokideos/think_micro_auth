@@ -8,8 +8,10 @@ queue = channel.queue('auth', durable: true)
 
 queue.subscribe do |_delivery_info, properties, payload|
   payload = JSON(payload)
-  result = Auth::FetchUserService
-           .call(extracted_token(token_mode: :rpc, rpc_token: payload['token'])['uuid'])
+  result = Auth::FetchUserService.call(
+    extracted_token(token_mode: :rpc,
+                    rpc_token: payload['token'])['uuid']
+  )
 
   exchange.publish(
     { user_id: result.user&.id }.to_json,
