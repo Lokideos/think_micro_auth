@@ -3,3 +3,11 @@
 
 # Ignore local docker-compose file
 docker-compose.yaml
+
+# Ignore log files
+/log/
+!/log/.keep
+
+# Ignore local config files
+config/settings.local.yml
+config/settings/*.local.yml
