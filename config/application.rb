@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Application < Roda
+  def self.root
+    File.expand_path('..', __dir__)
+  end
+
+  def self.environment
+    ENV.fetch('RACK_ENV').to_sym
+  end
+
   plugin :error_handler
   plugin(:not_found) { { error: 'Not found' } }
   plugin :environments
