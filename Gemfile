@@ -27,8 +27,12 @@ gem 'pry', '~> 0.13.0'
 gem 'bcrypt', '~> 3.1.0'
 gem 'jwt', '~> 2.2.1'
 
+gem 'rack-ougai', '~> 0.2.1'
+gem 'rack-request-id', '~> 0.0.4'
+
 group :development, :test do
   gem 'pry-byebug', '~> 3.9.0'
+  gem 'amazing_print'
 
   gem 'rspec', '~> 3.9.0'
   gem 'fabrication', '~> 2.21.0'

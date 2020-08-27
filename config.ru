@@ -2,6 +2,10 @@
 
 require_relative 'config/environment'
 
+use Rack::RequestId
+use Rack::Ougai::Logger
+use Rack::Ougai::RequestLogger
+
 if ENV["RACK_ENV"] == "development"
   require "rack/unreloader"
   unreloader = Rack::Unreloader.new(subclasses: %w[Application], reload: true) { Application }

@@ -1,27 +1,23 @@
 # frozen_string_literal: true
 
 class Application < Roda
-  plugin :error_handler do |e|
-    case e
-    when Sequel::NoMatchingRow
-      response['Content-Type'] = 'application/json'
-      response.status = 422
-      error_response I18n.t(:not_found, scope: 'api.errors')
-    when Sequel::UniqueConstraintViolation
-      response['Content-Type'] = 'application/json'
-      response.status = 422
-      error_response I18n.t(:not_unique, scope: 'api.errors')
-    when Validations::InvalidParams, KeyError
-      response['Content-Type'] = 'application/json'
-      response.status = 422
-      error_response I18n.t(:missing_parameters, scope: 'api.errors')
-    else
-      raise
+  class << self
+    attr_accessor :logger
+
+    def root
+      File.expand_path('..', __dir__)
+    end
+
+    def environment
+      ENV.fetch('RACK_ENV').to_sym
     end
   end
+
+  plugin :error_handler
   plugin(:not_found) { { error: 'Not found' } }
   plugin :environments
   plugin(:json_parser)
+  include Errors
   include Validations
   include ApiErrors
   include Auth
