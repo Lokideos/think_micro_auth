@@ -1,0 +1,7 @@
+rabbitmq:
+  host: <%= ENV.fetch('RABBITMQ_HOST') %>
+  username: <%= ENV.fetch('RABBITMQ_USER') %>
+  password: <%= ENV.fetch('RABBITMQ_PASSWORD') %>
+db:
+  database: auth_microservice_production
+  url: <%= ENV.fetch('AUTH_DATABASE_URL') %>
