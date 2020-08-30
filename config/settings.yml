@@ -5,6 +5,7 @@ db:
   host: localhost
   port: 5432
   user: postgres
+  url: <%= ENV['ADS_DATABASE_URL'] %>
   password: notsecure
 rabbitmq:
   host: <%= ENV['RABBITMQ_HOST'] %>
