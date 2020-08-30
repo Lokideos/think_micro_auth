@@ -5,12 +5,12 @@ db:
   host: localhost
   port: 5432
   user: postgres
-  url: <%= ENV['ADS_DATABASE_URL'] %>
+  url: <%= ENV['AUTH_DATABASE_URL'] %>
   password: notsecure
 rabbitmq:
-  host: <%= ENV['RABBITMQ_HOST'] %>
-  username: <%= ENV['RABBITMQ_USER'] %>
-  password: <%= ENV['RABBITMQ_PASSWORD'] %>
+  host: <%= ENV['AUTH_RABBITMQ_HOST'] %>
+  username: <%= ENV['AUTH_RABBITMQ_USER'] %>
+  password: <%= ENV['AUTH_RABBITMQ_PASSWORD'] %>
   consumer_pool: 10
 application:
   secret: "1072aa78-b9d5-4d78-a134-f97c3d37258d"
