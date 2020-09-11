@@ -5,7 +5,7 @@ namespace :db do
   task version: :settings do
     Sequel.extension :migration
 
-    @db = Sequel.connect(Settings.db.to_hash)
+    @db = Sequel.connect(Settings.db.url || Settings.db.to_hash)
 
     version = if @db.tables.include?(:schema_migrations)
                 @db[:schema_migrations].all.last&.dig(:filename) || "does not exist"

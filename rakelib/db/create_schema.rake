@@ -9,7 +9,8 @@ namespace :db do
     host = Settings.db.to_h[:host]
     port = Settings.db.to_h[:port]
     database = Settings.db.to_h[:database]
-    db_url = "postgres://#{user}:#{password}@#{host}:#{port}/#{database}"
+    custom_db_url = "postgres://#{user}:#{password}@#{host}:#{port}/#{database}"
+    db_url = Settings.db.url || custom_db_url
     system("sequel -D #{db_url} > #{schema_location}")
   end
 end
